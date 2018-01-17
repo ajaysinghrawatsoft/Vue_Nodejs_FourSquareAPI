@@ -6,9 +6,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label>Location:</label>
-            <div id="locationField">
-            <input id="autocomplete" onFocus="geolocate()" type="text" class="form-control" v-model="location">
-            </div>
+            <input id="autocomplete"  type="text" class="form-control" v-model="location">
           </div>
         </div>
         </div>
@@ -56,6 +54,7 @@
 
 </template>
 <script>
+  
   export default {
    data(){
             return{
@@ -65,6 +64,7 @@
 
     methods: {
       addItem(){
+        this.location = document.getElementById('autocomplete').value;
         let uri = 'http://localhost:3000/api/search?search='+this.search+'&location='+this.location;
         this.axios.get(uri).then((response) => {
           this.items  = response.data.response.venues
